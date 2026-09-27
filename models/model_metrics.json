@@ -1,0 +1,185 @@
+{
+    "best_model_name": "Gradient Boosting",
+    "risk_mapping": {
+        "Low Risk": 0,
+        "Medium Risk": 1,
+        "High Risk": 2
+    },
+    "inverse_risk_mapping": {
+        "0": "Low Risk",
+        "1": "Medium Risk",
+        "2": "High Risk"
+    },
+    "feature_names": [
+        "Attack_Type",
+        "Protocol",
+        "Port",
+        "Device",
+        "Country",
+        "User_Role",
+        "Auth_Method",
+        "Failed_Login_Count",
+        "Hour",
+        "Weekend_Flag",
+        "Session_Duration",
+        "Attack_Velocity",
+        "Failed_Login_Frequency",
+        "Historical_Threat_Count",
+        "Threat_Density",
+        "IP_Reputation_Score",
+        "Rolling_Incident_Average",
+        "Session_Duration_Anomaly",
+        "Geographic_Anomaly_Score",
+        "User_Behaviour_Anomaly_Score",
+        "Login_Time_Anomaly",
+        "Attack_Burst_Detection",
+        "Device_Risk_Score",
+        "Country_Risk_Score"
+    ],
+    "metrics": {
+        "Random Forest": {
+            "accuracy": 0.8913405495420483,
+            "precision": 0.8889103644526074,
+            "recall": 0.8913405495420483,
+            "f1_score": 0.8843905453850206,
+            "roc_auc": 0.968835418878799,
+            "confusion_matrix": [
+                [
+                    1259,
+                    98,
+                    0
+                ],
+                [
+                    118,
+                    879,
+                    1
+                ],
+                [
+                    0,
+                    44,
+                    3
+                ]
+            ]
+        },
+        "XGBoost": {
+            "accuracy": 0.9042464612822648,
+            "precision": 0.9030303337838321,
+            "recall": 0.9042464612822648,
+            "f1_score": 0.9027362161613266,
+            "roc_auc": 0.9809104261152234,
+            "confusion_matrix": [
+                [
+                    1252,
+                    105,
+                    0
+                ],
+                [
+                    87,
+                    902,
+                    9
+                ],
+                [
+                    0,
+                    29,
+                    18
+                ]
+            ]
+        },
+        "LightGBM": {
+            "accuracy": 0.9046627810158201,
+            "precision": 0.9032674568674036,
+            "recall": 0.9046627810158201,
+            "f1_score": 0.9034046160645837,
+            "roc_auc": 0.9805241989887328,
+            "confusion_matrix": [
+                [
+                    1263,
+                    94,
+                    0
+                ],
+                [
+                    100,
+                    889,
+                    9
+                ],
+                [
+                    0,
+                    26,
+                    21
+                ]
+            ]
+        },
+        "CatBoost": {
+            "accuracy": 0.9025811823480433,
+            "precision": 0.9015726380841546,
+            "recall": 0.9025811823480433,
+            "f1_score": 0.9006991298466805,
+            "roc_auc": 0.9790227468004786,
+            "confusion_matrix": [
+                [
+                    1259,
+                    98,
+                    0
+                ],
+                [
+                    102,
+                    891,
+                    5
+                ],
+                [
+                    0,
+                    29,
+                    18
+                ]
+            ]
+        },
+        "Extra Trees": {
+            "accuracy": 0.7210657785179018,
+            "precision": 0.7201944804369627,
+            "recall": 0.7210657785179018,
+            "f1_score": 0.6942275816424378,
+            "roc_auc": 0.9117758823325798,
+            "confusion_matrix": [
+                [
+                    1272,
+                    85,
+                    0
+                ],
+                [
+                    538,
+                    460,
+                    0
+                ],
+                [
+                    1,
+                    46,
+                    0
+                ]
+            ]
+        },
+        "Gradient Boosting": {
+            "accuracy": 0.9079933388842631,
+            "precision": 0.9070492784014164,
+            "recall": 0.9079933388842631,
+            "f1_score": 0.9062594513213345,
+            "roc_auc": 0.9793506528804952,
+            "confusion_matrix": [
+                [
+                    1265,
+                    92,
+                    0
+                ],
+                [
+                    96,
+                    897,
+                    5
+                ],
+                [
+                    0,
+                    28,
+                    19
+                ]
+            ]
+        }
+    }
+}

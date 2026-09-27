@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  postgres_db:
+    image: postgres:15-alpine
+    container_name: soc_postgres_db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres123
+      - POSTGRES_DB=soc_db
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    restart: always
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: soc_api_service
+    command: sh -c "python manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres_db
+    volumes:
+      - model_data:/app/models
+      - log_data:/app/logs
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_URL=postgresql://postgres:postgres123@postgres_db:5432/soc_db
+    restart: always
+
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: soc_dashboard_service
+    command: streamlit run app/dashboard.py --server.port 8501 --server.address 0.0.0.0
+    ports:
+      - "8501:8501"
+    depends_on:
+      - postgres_db
+      - api
+    volumes:
+      - model_data:/app/models
+      - log_data:/app/logs
+    environment:
+      - ENVIRONMENT=production
+      - DATABASE_URL=postgresql://postgres:postgres123@postgres_db:5432/soc_db
+    restart: always
+
+volumes:
+  pg_data:
+  model_data:
+  log_data:

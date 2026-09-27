@@ -1,0 +1,36 @@
+# Python Caches & Compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local databases & CSV dataset artifacts
+*.db
+*.csv
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Machine Learning joblib binaries
+models/*.joblib
+models/registry/*
+!models/registry/.gitkeep
+
+# Logs and Alerts Vaults
+logs/*
+!logs/.gitkeep
+alerts/*
+!alerts/.gitkeep
+reports/*
+!reports/.gitkeep
+
+# Environment local files
+.env
+config/settings.env
+.venv/
+env/
+venv/
+ENV/
