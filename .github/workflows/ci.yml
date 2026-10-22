@@ -12,10 +12,10 @@ jobs:
     
     steps:
     - name: Checkout Code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python 3.11
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: "3.11"
         cache: "pip"
@@ -34,14 +34,25 @@ jobs:
       run: |
         python src/data_generator.py
 
-    - name: Execute Data Preprocessing & Feature Engineering
+    - name: Execute Raw Data Cleaning & Preprocessing
+      run: |
+        python src/preprocessing.py
+
+    - name: Execute Security Feature Engineering
       run: |
         python src/feature_engineering.py
 
     - name: Train Baseline Model Pipelines
-      # We override n_iter to 1 to ensure the CI runs extremely fast (under 2 minutes)
       run: |
         python src/model_training.py
+
+    - name: Initialize and Seed SQLite Database
+      run: |
+        python seed_db.py
+
+    - name: Run Core, API & ML Unit Tests (Pytest)
+      run: |
+        python -m pytest tests/
 
     - name: Run Django Tests
       run: |

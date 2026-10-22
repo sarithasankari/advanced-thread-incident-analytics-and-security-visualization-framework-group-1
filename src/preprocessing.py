@@ -10,9 +10,11 @@ import numpy as np
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 
 def load_data(file_path):
-    """Loads the dataset from the specified CSV path."""
+    """Loads the dataset from the specified CSV path. If missing, generates synthetic incidents."""
     if not os.path.exists(file_path):
-        raise FileNotFoundError(f"Dataset not found at: {file_path}")
+        print(f"Dataset not found at: {file_path}. Automatically generating synthetic incidents...")
+        from src.data_generator import generate_synthetic_incidents
+        return generate_synthetic_incidents(num_records=5000, output_path=file_path)
     print(f"Loading raw dataset from: {file_path}")
     return pd.read_csv(file_path)
 

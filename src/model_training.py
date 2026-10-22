@@ -42,9 +42,11 @@ from src.utils.logger import get_logger
 logger = get_logger("model_training")
 
 def load_processed_data(file_path: str = "data/processed/cyber_incidents_processed.csv") -> pd.DataFrame:
-    """Loads the preprocessed and feature-engineered dataset."""
+    """Loads the preprocessed and feature-engineered dataset. If missing, runs feature engineering."""
     if not os.path.exists(file_path):
-        raise FileNotFoundError(f"Processed dataset not found at: {file_path}")
+        logger.warning(f"Processed dataset not found at '{file_path}'. Automatically executing feature engineering pipeline...")
+        from src.feature_engineering import run_feature_engineering_pipeline
+        return run_feature_engineering_pipeline(output_path=file_path)
     logger.info(f"Loading processed dataset from: {file_path}")
     return pd.read_csv(file_path)
 

@@ -16,9 +16,11 @@ from src.utils.logger import get_logger
 logger = get_logger("feature_engineering")
 
 def load_cleaned_data(file_path: str = "data/processed/cyber_incidents_cleaned.csv") -> pd.DataFrame:
-    """Loads the preprocessed cleaned dataset."""
+    """Loads the preprocessed cleaned dataset. If missing, automatically runs preprocessing."""
     if not os.path.exists(file_path):
-        raise FileNotFoundError(f"Cleaned dataset not found at: {file_path}")
+        logger.warning(f"Cleaned dataset not found at '{file_path}'. Automatically invoking preprocessing pipeline...")
+        from src.preprocessing import run_preprocessing_pipeline
+        return run_preprocessing_pipeline(cleaned_path=file_path)
     logger.info(f"Loading cleaned dataset from: {file_path}")
     return pd.read_csv(file_path)
 
