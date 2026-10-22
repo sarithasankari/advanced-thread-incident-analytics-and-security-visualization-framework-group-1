@@ -8,7 +8,7 @@ import sys
 import pytest
 import numpy as np
 import pandas as pd
-from datetime import datetime
+from datetime import datetime, timezone
 
 # Path configuration
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -49,7 +49,7 @@ def test_incident_crud(setup_db):
     """Verifies incident logs can be written and queried from the DB."""
     with get_db() as db:
         incident_data = {
-            "timestamp": datetime.now(),
+            "timestamp": datetime.now(timezone.utc),
             "source_ip": "192.168.1.99",
             "destination_ip": "10.100.1.1",
             "attack_type": "DDoS",
