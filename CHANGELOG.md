@@ -1,6 +1,19 @@
 # Changelog
 
-All notable changes to the SOC Threat incident Analytics and Security Visualization Framework will be documented in this file.
+All notable changes to the SOC Threat Incident Analytics and Security Visualization Framework will be documented in this file.
+
+---
+
+## [2.1.0] - 2026-10-22
+### Added
+- **One-Click Windows Launchers**: Added `run_dashboard.bat`, `run_api.bat`, and `run_django.bat` for seamless local startup.
+- **Windows UTF-8 Encoding Support**: Added explicit environment flags (`PYTHONUTF8=1`, `PYTHONIOENCODING=utf-8`) to prevent CLI unicode errors on Python 3.14.
+- **Comprehensive Documentation**: Updated `README.md` with full system architecture, quick-start guides, and feature workflows.
+
+### Fixed
+- **Virtual Environment Path**: Updated `pyvenv.cfg` from legacy OneDrive path to local workspace directory.
+- **JWT Deprecation**: Fixed deprecated `datetime.utcnow()` in `api/auth.py` by transitioning to timezone-aware UTC timestamps (`datetime.now(timezone.utc)`).
+- **Test Timestamps**: Updated `tests/test_core.py` to use timezone-aware datetimes, eliminating Django ORM naive datetime warnings.
 
 ---
 
